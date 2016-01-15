@@ -63,7 +63,7 @@ class AckermannDriveKeyop:
               if key == control_keys['space']:
                   self.speed = 0.0
               elif key == control_keys['tab']:
-                  self.steering_angle = 0.0;
+                  self.steering_angle = 0.0
               else:
                   self.speed = self.speed + control_bindings[key][0]
                   self.steering_angle = \
@@ -85,7 +85,7 @@ class AckermannDriveKeyop:
         rospy.loginfo('Halting motors, aligning wheels and exiting...')
         self.settings = termios.tcgetattr(sys.stdin)
         ackermann_cmd_msg = AckermannDrive()
-        ackermann_cmd_msg.speed = 0;
+        ackermann_cmd_msg.speed = 0
         ackermann_cmd_msg.steering_angle = 0
         self.motors_pub.publish(ackermann_cmd_msg)
         sys.exit()
