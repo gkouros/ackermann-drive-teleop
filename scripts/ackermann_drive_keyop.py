@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+
+'''
+ackermann_drive_keyop.py: A ros keyboard teleop script for ackermann robots
+'''
+
+__author__ = "George Kouros"
+__license__ = "GPLv3"
+__maintainer__ = "George Kouros"
+__email__ = "gkourosg@yahoo.gr"
+
 import roslib
 import rospy
 from ackermann_msgs.msg import AckermannDrive
