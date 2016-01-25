@@ -6,17 +6,11 @@ find_package(catkin REQUIRED COMPONENTS
   ackermann_msgs
 )
 
-
 catkin_package(
   INCLUDE_DIRS scripts
-  # LIBRARIES
+  LIBRARIES
   CATKIN_DEPENDS
     rospy
     ackermann_msgs
-  # DEPENDS
+  DEPENDS
 )
-
-# catkin_install_python(PROGRAMS
-  # scripts/ackermann_drive_keyop.py
-  # DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
