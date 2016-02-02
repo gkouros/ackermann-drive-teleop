@@ -37,7 +37,14 @@ key_bindings = {
 
 class AckermannDriveKeyop:
 
-    def __init__(self, max_speed=0.22, max_steering_angle=0.7):
+    def __init__(self, args):
+        if len(args) == 2:
+            max_speed = float(args[0])
+            max_steering_angle = float(args[1])
+        else:
+            max_speed = 0.2
+            max_steering_angle = 0.7
+
         self.speed_range = [-float(max_speed), float(max_speed)]
         self.steering_angle_range = [-float(max_steering_angle),
                                      float(max_steering_angle)]
@@ -51,6 +58,7 @@ class AckermannDriveKeyop:
         self.motors_pub = rospy.Publisher(
             'ackermann_cmd', AckermannDrive, queue_size=1)
         rospy.Timer(rospy.Duration(1.0/5.0), self.pub_callback, oneshot=False)
+        self.print_state()
         self.key_loop()
 
     def pub_callback(self, event):
@@ -66,8 +74,9 @@ class AckermannDriveKeyop:
         rospy.loginfo('\x1b[1M\rUse space to brake and tab to align wheels')
         rospy.loginfo('\x1b[1M\rPress <ctrl-c> or <q> to exit')
         rospy.loginfo('\x1b[1M\r*********************************************')
-        rospy.loginfo('\x1b[1M\r\033[32;1mSpeed: %0.2f m/s, '
-                      'Steer Angle: %0.1f rad\033[0m',
+        rospy.loginfo('\x1b[1M\r'
+                      '\033[34;1mSpeed: \033[32;1m%0.2f m/s, '
+                      '\033[34;1mSteer Angle: \033[32;1m%0.1f rad\033[0m',
                       self.speed, self.steering_angle)
 
     def get_key(self):
@@ -114,15 +123,5 @@ class AckermannDriveKeyop:
         sys.exit()
 
 if __name__ == '__main__':
-    sys.stderr.write('\x1b[2J\x1b[H')
     rospy.init_node('ackermann_drive_keyop_node')
-    rospy.loginfo('Ackermann Drive Keyboard Teleoperation Node Initialized')
-    args = sys.argv[1:]
-    if len(args) == 2:
-        rospy.loginfo('Setting motors max speed to %s and steering angle to %s',
-                      args[0], args[1])
-        keyop = AckermannDriveKeyop(args[0], args[1])
-    else:
-        rospy.loginfo('Using default motors max speed(0.5m/s) and steering '
-                      'angle(0.8rad)')
-        keyop = AckermannDriveKeyop()
+    keyop = AckermannDriveKeyop(sys.argv[1:3])
