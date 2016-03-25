@@ -18,17 +18,23 @@ import sys
 class AckermannDriveJoyop:
 
     def __init__(self, args):
-        if len(args) == 2:
+        if len(args)==1 or len(args)==2:
+            self.max_speed = float(args[0])
+            self.max_steering_angle = float(args[len(args)-1])
+            cmd_topic = 'ackermann_cmd'
+        elif len(args) == 3:
             self.max_speed = float(args[0])
             self.max_steering_angle = float(args[1])
+            cmd_topic = '/' + args[2]
         else:
             self.max_speed = 0.2
             self.max_steering_angle = 0.7
+            cmd_topic = 'ackermann_cmd'
 
         self.speed = 0
         self.steering_angle = 0
         self.joy_sub = rospy.Subscriber('/joy', Joy, self.joy_callback)
-        self.drive_pub = rospy.Publisher('ackermann_cmd', AckermannDrive,
+        self.drive_pub = rospy.Publisher(cmd_topic, AckermannDrive,
                                          queue_size=1)
         rospy.Timer(rospy.Duration(1.0/5.0), self.pub_callback, oneshot=False)
         rospy.loginfo('ackermann_drive_joyop_node initialized')
@@ -62,5 +68,5 @@ class AckermannDriveJoyop:
 
 if __name__ == '__main__':
     rospy.init_node('ackermann_drive_joyop_node')
-    joyop = AckermannDriveJoyop(sys.argv[1:3])
+    joyop = AckermannDriveJoyop(sys.argv[1:len(sys.argv)])
     rospy.spin()
