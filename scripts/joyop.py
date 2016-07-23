@@ -55,7 +55,7 @@ class AckermannDriveJoyop:
         sys.stderr.write('\x1b[2J\x1b[H')
         rospy.loginfo('\x1b[1M\r'
                       '\033[34;1mSpeed: \033[32;1m%0.2f m/s, '
-                      '\033[34;1mSteering Angle: \033[32;1m%0.1f rad\033[0m',
+                      '\033[34;1mSteering Angle: \033[32;1m%0.2f rad\033[0m',
                       self.speed, self.steering_angle)
 
     def finalize(self):

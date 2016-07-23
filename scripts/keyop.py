@@ -84,7 +84,7 @@ class AckermannDriveKeyop:
         rospy.loginfo('\x1b[1M\r*********************************************')
         rospy.loginfo('\x1b[1M\r'
                       '\033[34;1mSpeed: \033[32;1m%0.2f m/s, '
-                      '\033[34;1mSteer Angle: \033[32;1m%0.1f rad\033[0m',
+                      '\033[34;1mSteer Angle: \033[32;1m%0.2f rad\033[0m',
                       self.speed, self.steering_angle)
 
     def get_key(self):
