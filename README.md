@@ -1,4 +1,4 @@
-# ackerman_drive_teleop
+# ackermann_drive_teleop
 ROS teleoperation scripts for robots with ackermann steering
 
 ##### ackermann_drive_keyop
