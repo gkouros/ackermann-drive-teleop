@@ -19,5 +19,5 @@ eg.3 `rosrun ackermann_drive_teleop ackermann_drive_keyop 0.5 0.8 ack_cmd`
 `roslaunch ackermann_drive_teleop ackermann_drive_joyop.launch`  
 + You can set max speed and steering angle, by giving them as arguments to the launcher.  
 eg. `roslaunch ackermann_drive_teleop ackermann_drive_joyop.launch max_speed:=0.5 max_angle:=0.8`  
-+ **In order to use a joystick, it must have read and right permissions.**  
++ **In order to use a joystick, it must have read and write permissions.**  
 You can grant such permissions by executing the following command: `sudo chmod a+rw /dev/input/js0`
