@@ -43,6 +43,7 @@ class AckermannDriveKeyopStamper:
     """
     out_msg = AckermannDriveStamped()
     out_msg.header.stamp = rospy.Time.now()
+    out_msg.drive = msg
     
     self.ackermann_drive_timestamp_pub.publish(out_msg)
   
