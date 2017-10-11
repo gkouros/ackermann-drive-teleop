@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="max_speed" default="1"/>
+  <arg name="max_angle" default="1.57"/>
+
+  <!-- Launch ackermann_drive_keyop to teleoperate robots with ackermann steering -->
+  <node name="keyop" type="keyop.py" pkg="ackermann_drive_teleop" output="screen" args="$(arg max_speed) $(arg max_angle)">
+    <param name="max_speed" value="$(arg max_speed)"/>
+    <param name="max_angle" value="$(arg max_angle)"/>
+  </node>
+  
+  <!-- Launch node to add timestamps -->
+  <node name="keyop_stamper" type="keyop_stamper.py" pkg="ackermann_drive_teleop" output='screen'>
+    <remap from ="vel_in" to="ackermann_cmd_vel"/>
+    <remap from ="vel_out" to="cmd_vel_mux/input/keyboard"/>
+  </node>
+
+</launch>
+
