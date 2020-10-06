@@ -14,3 +14,7 @@ catkin_package(
     ackermann_msgs
   DEPENDS
 )
+
+catkin_install_python(PROGRAMS scripts/joyop.py scripts/keyop.py
+	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+	)
