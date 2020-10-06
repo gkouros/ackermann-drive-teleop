@@ -15,7 +15,12 @@ import rospy
 from ackermann_msgs.msg import AckermannDriveStamped
 from std_msgs.msg import Float64
 import sys, select, termios, tty
-import thread
+
+try:
+    import thread
+except ImportError:
+    #for python3 compatability
+    import _thread
 from numpy import clip
 
 control_keys = {
