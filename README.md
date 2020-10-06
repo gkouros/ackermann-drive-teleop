@@ -14,6 +14,14 @@ eg.3 `rosrun ackermann_drive_teleop keyop.py 0.5 0.8 ack_cmd`
 + Use the "up", "down" arrow keys to control speed, "left" and "right" arrow keys to control the steering angle,  
   space to brake and tab to reset the steering angle.  
 
+####  Running on noetic
+`cd $(python3 -m site --user-site)`
+Then make a file called `thread.py` with the following contents:
+`from _thread import *
+__all__ = ("error", "LockType", "start_new_thread", "interrupt_main", "exit", "allocate_lock", "get_ident", "stack_size", "acquire", "release", "locked")`
+
+Then `cd` into the catkin workspace and make the workspace. 
+
 ##### ackermann_drive_joyop
 + Run the teleoperation script, as well as the joy node using the following command:  
 `roslaunch ackermann_drive_teleop ackermann_drive_joyop.launch`  
